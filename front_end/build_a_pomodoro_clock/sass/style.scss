@@ -1,0 +1,218 @@
+
+@import "susy";
+@import "breakpoint";
+@import "compass/css3";
+
+*{
+	font-family: 'Orbitron', sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color:black;
+	font-size: 25px;
+}
+$susy:(
+	columns:12,
+	gutters:0,
+	math:fluid,
+	output:float,
+	gutter-position:inside,
+	container-position: center,
+);
+
+$mobile:425px;
+$tablet:426px; /* 426px - 768px*/
+$header:570px;
+$laptop-s:769px; /*768px - 1023px*/
+$laptop-l:1024px; /*1024px - 1440px*/
+
+
+body{
+	margin:0;
+	padding:0;
+	font-family: 'Orbitron', sans-serif;
+	font-weight: 700;
+  background-color: #818181;
+}
+
+
+
+#pomodoroBtn:active {
+  transform: translate(0px, 3px);
+  box-shadow: none;
+}
+
+.pomodoroBox{
+  @include container(500px);
+	width: 100%;
+	height:400px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+	// background-color: blue;
+
+  // margin:auto;
+	.row1{
+		@include span(12);
+		position: relative;
+		width: 100%;
+		height: 80px;
+		font-size: 40px;
+		text-align: center;
+		// background-color: white;
+		p{
+			margin: 0px;
+		}
+	}
+
+  .row2{
+		@include span(12);
+		position: relative;
+		width: 100%;
+		height: 100px;
+		padding-top: 5px;
+		text-align: center;
+
+		p{
+			line-height: 25px;
+			padding-top: 3px;
+			margin: 0;
+		}
+
+
+		.col1{
+			@include span(6);
+			.row1{
+				height: 25px;
+				font-size: 20px;
+			}
+			.row2{
+				@include span(12);
+				height: 25px;
+				position: relative;
+
+				.col1{
+					@include span(4);
+					text-align: right;
+
+				}
+				.col2{
+					@include span(4 at 5);
+
+
+				}
+				.col3{
+					@include span(4 at 9);
+					text-align: left;
+
+				}
+			}
+		}
+		.col2{
+			@include span(6 at 7);
+			.row1{
+				height: 25px;
+				font-size: 20px;
+			}
+			.row2{
+				@include span(12);
+				height: 25px;
+				.col1{
+					@include span(4);
+					text-align: right;
+				}
+				.col2{
+					@include span(4 at 5);
+				}
+				.col3{
+					@include span(4 at 9);
+					text-align: left;
+				}
+			}
+		}
+  }
+
+  .row3{
+		@include span(12);
+		padding: 15px 25px 5px 25px;
+		position: relative;
+		width: 100%;
+		height: 250px;
+
+		.col1{
+			background: black; /* Old browsers */
+			background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3019), color-stop(100%,#cf0404)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* IE10+ */
+			background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+			-webkit-border-radius:100px;
+			-moz-border-radius:100px;
+			border-radius:110px;
+			border:2px solid #e74c3c;
+			display:inline-block;
+			color:#fff;
+		  font-family:verdana,georgia, helvetica;
+			font-size:16px;
+			font-weight:bold;
+			font-style:normal;
+			height:250px;
+			// line-height:100px;
+			width:240px;
+			margin: auto;
+			padding:3px 7px 3px 7px;
+			text-decoration:none;
+			text-align:center;
+			position: absolute;
+			top: 0; left: 0; bottom: 0; right: 0;
+
+			.row1{
+				font-size: 25px;
+				position: relative;
+
+				p{
+					left: 0; bottom: 0; right: 0;
+					position: absolute;
+				}
+			}
+			.row2{
+				font-size:25px;
+				position: relative;
+					p{
+						top:30%;left: 0; bottom: 0; right: 0;
+						position: absolute;
+					}
+			}
+		}
+
+
+		.col1:hover{
+		color:#fff;
+		}
+
+  }
+}
+
+
+@include susy-breakpoint($mobile){
+
+}
+
+@include susy-breakpoint($tablet){
+
+}
+
+@include susy-breakpoint($header){
+
+}
+
+@include susy-breakpoint($laptop-s){
+
+}
+
+@include susy-breakpoint($laptop-l){
+
+}

@@ -1,0 +1,134 @@
+
+@import "susy";
+@import "breakpoint";
+@import "compass/css3";
+
+$susy:(
+	columns:12,
+	gutters:0,
+	math:fluid,
+	output:float,
+	gutter-position:inside,
+	container-position: center,
+);
+
+$mobile:425px;
+$tablet:426px; /* 426px - 768px*/
+$header:570px;
+$laptop-s:769px; /*768px - 1023px*/
+$laptop-l:1024px; /*1024px - 1440px*/
+
+body{
+	transition: all 0.5s ease;
+	margin:0;
+	padding:0;
+	background:grey;
+	font-family: Georgia, serif;
+}
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
+.quoteBox{
+  @include container(500px);
+	display: table;
+  background-color: white;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 10%; right: 0;
+  border-radius: 5px 5px 5px 5px;
+  // margin:auto;
+
+  .row1{
+    @include span(12);
+		width: 100%;
+		min-height: 150px;
+    display: table-cell;
+    height: auto;
+    overflow: hidden;
+    text-align: left;
+
+		blockquote{
+			padding: 20px 10px 10px 40px;
+			font-family: Georgia, serif;
+			font-size: 22px;
+			font-style: italic;
+			line-height: 1.45;
+			position: relative;
+
+		}
+
+		blockquote:before {
+			display: block;
+			content: "\201C";
+			font-size: 80px;
+			position: absolute;
+			left: -5px;
+			top: 0px;
+			color: #7a7a7a;
+		}
+
+		blockquote cite {
+			color: #999999;
+			font-size: 14px;
+			display: block;
+			margin-top: 5px;
+		}
+
+		blockquote cite:before {
+			content: "\2014 \2009";
+		}
+  }
+
+  .row2{
+    @include span(12);
+		height: 70px;
+
+		button {
+	    background-color: grey; /* Green */
+			transition: all 0.5s ease;
+	    border: none;
+			border-radius: 4px;
+	    color: white;
+	    padding: 10px 15px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 13px;
+			font-family: "Trebuchet MS";
+		}
+
+      .col1{
+      @include span(4);
+      padding: 10px 0px 10px 53px;
+      height: 100%;
+      }
+
+      .col2{
+      @include span(4 at 9);
+      padding: 10px 0px 40px 25px;
+      height: 100%;
+      }
+  }
+}
+
+@include susy-breakpoint($mobile){
+
+}
+
+@include susy-breakpoint($tablet){
+
+}
+
+@include susy-breakpoint($header){
+
+}
+
+@include susy-breakpoint($laptop-s){
+
+}
+
+@include susy-breakpoint($laptop-l){
+
+}
