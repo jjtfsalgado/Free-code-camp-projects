@@ -1,0 +1,44 @@
+@import "base/variables";
+@import "~susy/sass/susy";
+
+//foundation
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
+
+//Components
+
+$susy:(
+	columns:12,
+	gutters:0,
+	math:fluid,
+	output:float,
+	gutter-position:inside,
+	container-position: center,
+);
+
+.container{
+  @include span(12);
+	width: 100%;
+	height:380px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+
+	.col1{
+		@include span(6);
+		position: relative;
+
+    textarea {
+      resize: vertical;
+      height: 600px;
+      width:90%;
+    }
+	}
+
+  .col2{
+    @include span(6 at 7);
+		position: relative;
+
+  }
+}
