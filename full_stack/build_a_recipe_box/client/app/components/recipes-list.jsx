@@ -7,8 +7,12 @@ import Recipe from './recipe';
 var RecipesList = React.createClass({
   getInitialState: function () {
     return{
-      recipes: undefined
+      recipes: undefined,
+      updated: false
     }
+  },
+  update(){
+    this.props.onEdited(true);
   },
   componentWillMount: function () {
     var that = this;
@@ -19,16 +23,21 @@ var RecipesList = React.createClass({
       })
     });
   },
+  componentWillReceiveProps (nextProps) {
+    if(nextProps.updated || nextProps.edited){
+      this.componentWillMount();
+    }
+  },
   render: function() {
     var all = this.state.recipes;
-
+    this.state.updated;
     if (all) {
       return(
         <div>
           {all.map((row, index) => (
             <PanelGroup defaultActiveKey={index} key={index} accordion>
               <Panel header={row.title}>
-                <Recipe ingredients={row.text}/>
+                <Recipe ingredients={row.text} id={row._id} onUpdate={this.update}/>
               </Panel>
             </PanelGroup>
           ))}

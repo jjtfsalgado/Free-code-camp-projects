@@ -1,50 +1,37 @@
 import React from 'react';
 import { ButtonToolbar, Button, Modal, FormGroup, FormControl, ControlLabel  } from 'react-bootstrap';
 
-import Api from '../actions/crudApi';
-
 var AddRecipe = React.createClass({
   getInitialState(){
     return {
       show: false,
-      title: undefined,
-      text: undefined
     };
   },
-  handleChange(e){
-    const name = e.target.name;
-    this.setState({
-      [name]: e.target.value,
-    })
-  },
-  handleNewRecipe: function(e) {
-    e.preventDefault();
-
-    if (this.state.title && this.state.text) {
-      Api.postRecipe(this.state.title, this.state.text).then(function () {
-        console.log('Sucess! Your data was submitted');
-      }).catch(function (error) {
-        throw error;
-      });
-    }else {
-      console.log('Unable to add data');
+  componentWillReceiveProps(nextProps){
+    if(nextProps.updated){
+      this.setState({show: false});
     }
   },
+  close(){
+    this.setState({show: false});
+  },
+  open(){
+    this.setState({show: true});
+  },
   render: function() {
-    let close = () => this.setState({show: false});
     return(
       <div className="modal-container" style={{height: 200}}>
         <Button
           bsStyle="primary"
           bsSize="large"
-          onClick={() => this.setState({ show: true})}
+          onClick={this.open}
         >
           Add Recipe
         </Button>
 
         <Modal
           show={this.state.show}
-          onHide={close}
+          onHide={this.close}
           container={this}
           aria-labelledby="contained-modal-title"
         >
@@ -55,17 +42,17 @@ var AddRecipe = React.createClass({
             <form>
               <FormGroup controlId="formBasicText">
                 <ControlLabel>Recipe</ControlLabel>
-                <FormControl name='title' value={this.state.title} onChange={this.handleChange} placeholder="Recipe Name"/>
+                <FormControl name='title' value={this.props.title} onChange={this.props.handleChange} placeholder="Recipe Name"/>
               </FormGroup>
               <FormGroup controlId="formControlsTextarea">
                 <ControlLabel>Ingredients</ControlLabel>
-                <FormControl name='text' value={this.state.text} onChange={this.handleChange} componentClass="textarea" placeholder="Enter ingredients separated by commas" />
+                <FormControl name='text' value={this.props.text} onChange={this.props.handleChange} componentClass="textarea" placeholder="Enter ingredients separated by commas" />
               </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}>Close</Button>
-            <Button bsStyle="primary" onClick={this.handleNewRecipe}>Add Recipe</Button>
+            <Button onClick={this.close}>Close</Button>
+            <Button bsStyle="primary" type="submit" onClick={this.props.handleNewRecipe}>Add Recipe</Button>
           </Modal.Footer>
         </Modal>
       </div>

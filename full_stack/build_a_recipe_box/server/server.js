@@ -24,8 +24,11 @@ app.use(function (req, res, next){
 
 app.use(express.static(path.resolve(__dirname, '../client/public')));
 
-app.get('/recipes',recipeController.readAll);
-app.post('/recipes',recipeController.create);
+app.get('/recipes', recipeController.readAll);
+app.get('/recipes/:id', recipeController.readById);
+app.post('/recipes', recipeController.create);
+app.delete('/recipes/:id', recipeController.delete);
+app.put('/recipes/:id', recipeController.update);
 
 app.listen(PORT, function () {
   console.log('Express server is up on port ' + PORT);
